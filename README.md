@@ -295,3 +295,5 @@ Get-Content C:\Windows\System32\drivers\etc\hosts | Select-String "moodle|quinqu
 curl.exe -k -I --resolve quinque.local:443:192.168.56.101 https://quinque.local/
 
 curl.exe -k -I --resolve moodle:443:192.168.56.101 https://moodle/quinque.local/
+
+notepad C:\Windows\System32\drivers\etc\hosts
