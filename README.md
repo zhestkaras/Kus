@@ -1,4 +1,4 @@
-work@debian:/tmp$ sudo cat /etc/nginx/sites-enabled/moodle
+щwork@debian:/tmp$ sudo cat /etc/nginx/sites-enabled/moodle
 server {
     listen 443 ssl;
     server_name quinque.local;
@@ -281,4 +281,12 @@ work@debian:/tmp$ sudo ss -tlnp | grep nginx
 LISTEN 0      511          0.0.0.0:443       0.0.0.0:*    users:(("nginx",pid=1761,fd=6),("nginx",pid=833,fd=6))
 LISTEN 0      511          0.0.0.0:80        0.0.0.0:*    users:(("nginx",pid=1761,fd=5),("nginx",pid=833,fd=5))
 LISTEN 0      511             [::]:80           [::]:*    users:(("nginx",pid=1761,fd=11),("nginx",pid=833,fd=11))
+
+sudo grep -nE 'wwwroot|dirroot|dataroot' /var/www/html/moodle/config.php
+
+sudo nginx -T 2>/dev/null | grep -n -A15 -B3 'server_name moodle'
+
+sudo nginx -T 2>/dev/null | grep -n -A15 -B3 'server_name quinque.local'
+
+curl.exe -k -I --resolve moodle:443:192.168.56.101 https://moodle/quinque.local/
 
