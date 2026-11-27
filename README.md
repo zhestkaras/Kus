@@ -254,3 +254,31 @@ work@debian:/tmp$ sudo grep -n "wwwroot" /var/www/html/moodle/config.php
 987:// $CFG->behat_wwwroot = 'http://127.0.0.1/moodle';
 1101://           'behat_wwwroot' => 'http://127.0.0.1/moodle',
 1134://   $CFG->behat_ionic_wwwroot = 'http://localhost:8100';
+
+
+
+work@debian:/tmp$ getent hosts moodle
+10.0.2.15       moodle
+work@debian:/tmp$ curl -I -H "Host: moodle" http://127.0.0.1/quinque.local/
+HTTP/1.1 200 OK
+Server: nginx
+Date: Fri, 27 Nov 2026 02:51:54 GMT
+Content-Type: text/html; charset=utf-8
+Connection: keep-alive
+Set-Cookie: MoodleSession=a455a405bb76f592d98b9abb2e33130d; path=/quinque.local/; secure; HttpOnly; SameSite=Lax
+Content-Language: en
+Content-Script-Type: text/javascript
+Content-Style-Type: text/css
+X-UA-Compatible: IE=edge
+Cache-Control: no-store, no-cache, must-revalidate, no-transform
+Pragma: no-cache
+Expires: Mon, 20 Aug 1969 09:23:00 GMT
+Last-Modified: Fri, 27 Nov 2026 02:51:54 GMT
+Accept-Ranges: none
+X-Frame-Options: sameorigin
+
+work@debian:/tmp$ sudo ss -tlnp | grep nginx
+LISTEN 0      511          0.0.0.0:443       0.0.0.0:*    users:(("nginx",pid=1761,fd=6),("nginx",pid=833,fd=6))
+LISTEN 0      511          0.0.0.0:80        0.0.0.0:*    users:(("nginx",pid=1761,fd=5),("nginx",pid=833,fd=5))
+LISTEN 0      511             [::]:80           [::]:*    users:(("nginx",pid=1761,fd=11),("nginx",pid=833,fd=11))
+
