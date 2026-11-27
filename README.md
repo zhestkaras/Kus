@@ -290,3 +290,8 @@ sudo nginx -T 2>/dev/null | grep -n -A15 -B3 'server_name quinque.local'
 
 curl.exe -k -I --resolve moodle:443:192.168.56.101 https://moodle/quinque.local/
 
+Get-Content C:\Windows\System32\drivers\etc\hosts | Select-String "moodle|quinque"
+
+curl.exe -k -I --resolve quinque.local:443:192.168.56.101 https://quinque.local/
+
+curl.exe -k -I --resolve moodle:443:192.168.56.101 https://moodle/quinque.local/
